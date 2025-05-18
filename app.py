@@ -11,7 +11,7 @@ modelo = load_model("modelo_lstm_12horas.h5")  # Actualiza el nombre del modelo 
 scaler = joblib.load("scaler.pkl")  # Asegúrate de que el scaler haya sido guardado previamente con joblib
 
 # Configuración de parámetros de predicción (se pueden ajustar según necesidad)
-INPUT_STEPS = 36       # Número de pasos de entrada (registros anteriores)
+INPUT_STEPS = 1       # Número de pasos de entrada (registros anteriores)
 PREDICT_SHIFT = 1     # Número de pasos hacia el futuro (predicción 12 horas más tarde)
 OUTPUT_STEPS = 12       # Número de pasos de salida (por defecto 1, si deseas predecir varios valores futuros ajusta este valor)
 
