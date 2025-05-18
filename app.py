@@ -26,7 +26,7 @@ def inverse_transform_column(pred_column, col_index):
 
 @app.route('/')
 def index():
-    return "✅ API para predicción del clima con LSTM está activa."
+    return "✅ API para predicción del clima Kiteni con LSTM está activa."
 
 @app.route('/predecir', methods=['POST'])
 def predecir():
