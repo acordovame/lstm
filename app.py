@@ -41,16 +41,17 @@ def predecir():
         entrada_2d = entrada.reshape(-1, len(features))
         entrada_scaled = scaler.transform(entrada_2d).reshape(1, INPUT_STEPS, len(features))
 
-        # Predicción
-        pred_scaled = modelo.predict(entrada_scaled)
+        # Hacer la predicción
+        pred_scaled = modelo.predict(entrada_scaled)  # (1, 48)
+        pred_scaled = pred_scaled.reshape(OUTPUT_STEPS, len(target_columns))  # (12, 4)
 
-        # Desnormalización (por columna)
+        # Desnormalizar cada columna
         resultados = {}
         for i, var in enumerate(target_columns):
             col_index = features.index(var)
             pred_column = pred_scaled[:, i].reshape(-1, 1)
             desnormalizado = inverse_transform_column(pred_column, col_index)
-            resultados[var] = desnormalizado.tolist()
+            resultados[var] = desnormalizado.tolist()  # Cada lista tendrá 12 valores
 
         return jsonify({'prediccion': resultados})
 
